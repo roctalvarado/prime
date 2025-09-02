@@ -31,6 +31,8 @@ public class Main extends javax.swing.JFrame {
         txtValue = new javax.swing.JTextField();
         btnOK = new javax.swing.JButton();
         lblResult = new javax.swing.JLabel();
+        lblLeftToRight = new javax.swing.JLabel();
+        lblRightToLeft = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +45,10 @@ public class Main extends javax.swing.JFrame {
 
         lblResult.setText("...");
 
+        lblLeftToRight.setText("...");
+
+        lblRightToLeft.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -54,7 +60,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(txtValue)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 312, Short.MAX_VALUE)
-                        .addComponent(btnOK)))
+                        .addComponent(btnOK))
+                    .addComponent(lblRightToLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLeftToRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -64,9 +72,13 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOK)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
+                .addComponent(lblLeftToRight)
+                .addGap(18, 18, 18)
+                .addComponent(lblRightToLeft)
+                .addGap(16, 16, 16)
                 .addComponent(lblResult)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -75,12 +87,26 @@ public class Main extends javax.swing.JFrame {
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         // 1 Agarrar el valor de la caja de texto
         String value = txtValue.getText();
+        
+        Palindrome p = Palindrome.validate(value);
+        
+        lblLeftToRight.setText(p.getLeftToRight());
+        lblRightToLeft.setText(p.getRightToLeft());
+        
+        if(p.isResult()){
+            lblResult.setText("Sí es palíndromo");
+        } else {
+            lblResult.setText("No es palíndromo");
+        }
+        
+        /*
         // 2 Invocar al método
         if(Palindrome.isPalindrome(value)) {
             lblResult.setText("Sí es palíndromo");
         } else {
             lblResult.setText("No es palíndromo");
         }
+        */
     }//GEN-LAST:event_btnOKActionPerformed
 
     /**
@@ -120,7 +146,9 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
+    private javax.swing.JLabel lblLeftToRight;
     private javax.swing.JLabel lblResult;
+    private javax.swing.JLabel lblRightToLeft;
     private javax.swing.JTextField txtValue;
     // End of variables declaration//GEN-END:variables
 }
